@@ -138,7 +138,9 @@ class MainActivity : AppCompatActivity(), FrameListener {
         chart.setTouchEnabled(true)
         chart.isDragEnabled = true
         chart.setScaleEnabled(true)
-        chart.legend.position = Legend.LegendPosition.ABOVE_CHART_RIGHT
+        chart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        chart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        chart.legend.orientation = Legend.LegendOrientation.HORIZONTAL
         chart.legend.isEnabled = true
         chart.legend.textColor = getColor(R.color.black)
 
