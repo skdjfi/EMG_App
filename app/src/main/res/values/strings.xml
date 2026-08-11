@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EMG 肌电监测</string>
+    <!-- 连接区 -->
+    <string name="host_hint">ESP32 IP (AP 模式默认 192.168.4.1)</string>
+    <string name="port_hint">端口(默认 5000)</string>
+    <string name="connect">连接</string>
+    <string name="disconnect">断开</string>
+    <!-- 命令 -->
+    <string name="cmd_start">启动采集</string>
+    <string name="cmd_stop">停止采集</string>
+    <string name="cmd_imu_on">开启IMU</string>
+    <string name="cmd_imu_off">关闭IMU</string>
+    <string name="cmd_get_info">设备信息</string>
+    <string name="gain_label">增益: x6</string>
+    <string name="sps_label">采样率: 500SPS</string>
+    <string name="status_disconnected">未连接</string>
+    <string name="status_connecting">连接中…</string>
+    <string name="status_connected">已连接</string>
+    <!-- 波形 -->
+    <string name="ch1_label">CH1</string>
+    <string name="ch2_label">CH2</string>
+    <string name="ch3_label">CH3</string>
+    <string name="ch4_label">CH4</string>
+    <string name="info_text">设备信息: -</string>
+</resources>
