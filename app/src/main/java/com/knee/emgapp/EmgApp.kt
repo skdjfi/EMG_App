@@ -16,7 +16,6 @@ object CrashLog {
 
     @Volatile
     lateinit var app: Context
-        private set
 
     fun file(): File = File(app.filesDir, "crash.log")
 
