@@ -104,7 +104,7 @@ class HorizonView @JvmOverloads constructor(
             val y1 = cy + sin(ang) * (r - 3)
             val x2 = cx + cos(ang) * (r - 11)
             val y2 = cy + sin(ang) * (r - 11)
-            canvas.drawLine(x1, y1, x2, y2, tickPaint)
+            canvas.drawLine(x1.toFloat(), y1.toFloat(), x2.toFloat(), y2.toFloat(), tickPaint)
         }
 
         // YAW 指示点(随 yaw 旋转)

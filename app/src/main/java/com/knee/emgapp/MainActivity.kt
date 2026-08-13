@@ -347,13 +347,13 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         val inputHost = EditText(this).apply {
             hint = "ESP32 IP (AP 模式 192.168.4.1)"
             setText(prefs.getString(KEY_HOST, "192.168.4.1"))
-            singleLine = true
+            isSingleLine = true
             inputType = android.text.InputType.TYPE_CLASS_TEXT
         }
         val inputPort = EditText(this).apply {
             hint = "端口 (默认 5000)"
             setText(prefs.getString(KEY_PORT, "5000"))
-            singleLine = true
+            isSingleLine = true
             inputType = android.text.InputType.TYPE_CLASS_NUMBER
         }
         layout.addView(inputHost, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -554,12 +554,12 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         kGyrX.text = String.format("%.1f °/s", gyr[0])
         kGyrY.text = String.format("%.1f °/s", gyr[1])
         kGyrZ.text = String.format("%.1f °/s", gyr[2])
-        setBarPct(kAccXM, abs(acc[0]) / 6144f)
-        setBarPct(kAccYM, abs(acc[1]) / 6144f)
-        setBarPct(kAccZM, abs(acc[2]) / 6144f)
-        setBarPct(kGyrXM, abs(gyr[0]) / 2000f)
-        setBarPct(kGyrYM, abs(gyr[1]) / 2000f)
-        setBarPct(kGyrZM, abs(gyr[2]) / 2000f)
+        setBarPct(kAccXM, abs(acc[0].toInt()) / 6144f)
+        setBarPct(kAccYM, abs(acc[1].toInt()) / 6144f)
+        setBarPct(kAccZM, abs(acc[2].toInt()) / 6144f)
+        setBarPct(kGyrXM, abs(gyr[0].toInt()) / 2000f)
+        setBarPct(kGyrYM, abs(gyr[1].toInt()) / 2000f)
+        setBarPct(kGyrZM, abs(gyr[2].toInt()) / 2000f)
     }
 
     private fun updatePredict() {

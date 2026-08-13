@@ -36,7 +36,7 @@ class WaveformView @JvmOverloads constructor(
         accent = Theme.color(context, R.attr.accent)
         linePaint.color = accent
         glowPaint.color = accent
-        gridPaint.color = Theme.color(context, R.attr.track)
+        gridPaint.color = Theme.color(context, R.attr.trackBg)
         gridPaint.strokeWidth = 1f
         setLayerType(LAYER_TYPE_SOFTWARE, null)
     }

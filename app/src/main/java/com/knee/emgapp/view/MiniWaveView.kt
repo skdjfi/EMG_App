@@ -31,7 +31,7 @@ class MiniWaveView @JvmOverloads constructor(
     private var data: List<Float> = emptyList()
 
     init {
-        midPaint.color = Theme.color(context, R.attr.track)
+        midPaint.color = Theme.color(context, R.attr.trackBg)
     }
 
     fun setColor(color: Int) {
