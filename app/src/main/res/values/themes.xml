@@ -24,7 +24,7 @@
         <item name="accentDim">@color/accentDim</item>
         <item name="danger">@color/danger</item>
         <item name="warn">@color/warn</item>
-        <item name="track">@color/track</item>
+        <item name="trackBg">@color/track</item>
         <item name="chip">@color/chip</item>
         <item name="chipEdge">@color/chipEdge</item>
         <item name="glass">@color/glass</item>
