@@ -96,7 +96,10 @@ class FrameParser(private val listener: FrameListener) {
     }
 
     private fun dispatchEmg(seq: Int, data: ByteArray) {
-        require(data.size >= 9) { "EMG frame too short" }
+        if (data.size < 9) {
+            listener.onParseError("EMG frame too short: ${data.size}")
+            return
+        }
         var idx = 0
         fun read16(): Short {
             val hi = data[idx].toInt() and 0xFF
@@ -113,7 +116,10 @@ class FrameParser(private val listener: FrameListener) {
     }
 
     private fun dispatchImu(seq: Int, data: ByteArray) {
-        require(data.size >= 12) { "IMU frame too short" }
+        if (data.size < 12) {
+            listener.onParseError("IMU frame too short: ${data.size}")
+            return
+        }
         var idx = 0
         fun read16(): Short {
             val v = data[idx].toInt() and 0xFF

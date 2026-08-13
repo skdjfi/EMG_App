@@ -48,6 +48,8 @@ class HorizonView @JvmOverloads constructor(
         linePaint.color = accent
         tickPaint.color = Theme.color(context, R.attr.cardEdge)
         dotPaint.color = accent
+        // clipPath 在硬件加速画布上 API 26/27 不支持(会抛 UnsupportedOperationException), 强制软件绘制
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
     }
 
     private fun dp(v: Float): Float = v * resources.displayMetrics.density

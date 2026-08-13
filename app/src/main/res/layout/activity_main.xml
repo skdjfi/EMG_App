@@ -17,6 +17,7 @@
 
     <!-- ===== 底部玻璃 Tab 栏 ===== -->
     <LinearLayout
+        android:id="@+id/tabBarWrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

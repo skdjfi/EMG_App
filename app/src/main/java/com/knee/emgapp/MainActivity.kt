@@ -128,10 +128,10 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
 
     private val refreshRunnable = object : Runnable {
         override fun run() {
-            updateHome()
-            updateWaveDetail()
-            updateImuDetail()
-            updatePredict()
+            try { updateHome() } catch (t: Throwable) { CrashLog.append("updateHome", t) }
+            try { updateWaveDetail() } catch (t: Throwable) { CrashLog.append("updateWaveDetail", t) }
+            try { updateImuDetail() } catch (t: Throwable) { CrashLog.append("updateImuDetail", t) }
+            try { updatePredict() } catch (t: Throwable) { CrashLog.append("updatePredict", t) }
             uiHandler.postDelayed(this, UI_REFRESH_MS)
         }
     }
@@ -149,6 +149,19 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         reflectState()
         uiHandler.post(refreshRunnable)
         startPredictTimers()
+        uiHandler.post { showPendingCrash() }
+    }
+
+    private fun showPendingCrash() {
+        val f = CrashLog.file()
+        if (!f.exists()) return
+        val text = f.readText().take(1200)
+        AlertDialog.Builder(this)
+            .setTitle("上次发生崩溃")
+            .setMessage(text)
+            .setNegativeButton("清除记录") { _, _ -> f.delete() }
+            .setPositiveButton("知道了", null)
+            .show()
     }
 
     override fun onResume() {
@@ -182,9 +195,15 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         bSps = findViewById(R.id.bSps)
         bImu = findViewById(R.id.bImu)
         btnConn = findViewById(R.id.btnConn)
-        minis = Array(4) { findViewById(R.id.miniW0 + it) as MiniWaveView }
-        chVals = Array(4) { findViewById(R.id.chVal0 + it) as TextView }
-        chCards = Array(4) { findViewById(R.id.chCard0 + it) }
+        minis = Array(4) {
+            findViewById(intArrayOf(R.id.miniW0, R.id.miniW1, R.id.miniW2, R.id.miniW3)[it]) as MiniWaveView
+        }
+        chVals = Array(4) {
+            findViewById(intArrayOf(R.id.chVal0, R.id.chVal1, R.id.chVal2, R.id.chVal3)[it]) as TextView
+        }
+        chCards = Array(4) {
+            findViewById(intArrayOf(R.id.chCard0, R.id.chCard1, R.id.chCard2, R.id.chCard3)[it])
+        }
         imuTxt = findViewById(R.id.imuTxt)
         barR = findViewById(R.id.barR)
         barP = findViewById(R.id.barP)
@@ -199,7 +218,9 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         stSnr = findViewById(R.id.stSnr)
         stMdfM = findViewById(R.id.stMdfM)
         stSnrM = findViewById(R.id.stSnrM)
-        dots = Array(4) { findViewById(R.id.dot0 + it) as TextView }
+        dots = Array(4) {
+            findViewById(intArrayOf(R.id.dot0, R.id.dot1, R.id.dot2, R.id.dot3)[it]) as TextView
+        }
         chipGain = findViewById(R.id.chipGain)
         chipSps = findViewById(R.id.chipSps)
         waveTag = findViewById(R.id.waveTag)
@@ -259,10 +280,14 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         }
         findViewById<View>(R.id.imuCard).setOnClickListener {
             pageImuDetail.visibility = View.VISIBLE
+            setOverlayChrome(false)
         }
 
         findViewById<View>(R.id.btnBackD).setOnClickListener { closeWaveDetail() }
-        findViewById<View>(R.id.btnImuBack).setOnClickListener { pageImuDetail.visibility = View.GONE }
+        findViewById<View>(R.id.btnImuBack).setOnClickListener {
+            pageImuDetail.visibility = View.GONE
+            setOverlayChrome(true)
+        }
 
         repeat(4) {
             val idx = it
@@ -297,11 +322,20 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
     private fun openWaveDetail(idx: Int) {
         switchDetailChannel(idx)
         pageWaveDetail.visibility = View.VISIBLE
+        setOverlayChrome(false)
     }
 
     private fun closeWaveDetail() {
         pageWaveDetail.visibility = View.GONE
+        setOverlayChrome(true)
         updateWaveDetail()
+    }
+
+    /** 详情页全屏覆盖时隐藏 FAB 与底部 Tab 栏(它们有 elevation, 会浮在覆盖层之上) */
+    private fun setOverlayChrome(show: Boolean) {
+        val v = if (show) View.VISIBLE else View.GONE
+        fab.visibility = v
+        findViewById<View>(R.id.tabBarWrap).visibility = v
     }
 
     private fun switchDetailChannel(idx: Int) {
