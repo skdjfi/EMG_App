@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- ===== 浅色医疗风 ===== -->
+    <color name="bg">#F4F6FA</color>
+    <color name="card">#FFFFFF</color>
+    <color name="card2">#F7F9FD</color>
+    <color name="cardEdge">#E3E9F2</color>
+    <color name="textPrimary">#10233B</color>
+    <color name="textSecondary">#5F7089</color>
+    <color name="textTertiary">#9AA8BC</color>
+    <color name="accent">#1F7AEC</color>
+    <color name="accent2">#0F66D4</color>
+    <color name="accentDim">#141F7AEC</color>
+    <color name="danger">#E5484D</color>
+    <color name="warn">#E8930C</color>
+    <color name="track">#E4EAF3</color>
+    <color name="chip">#F0F4FA</color>
+    <color name="chipEdge">#DCE4EF</color>
+    <color name="glass">#E6FFFFFF</color>
+    <color name="glassEdge">#DFFFFFFF</color>
+
+    <color name="ch1">#1F7AEC</color>
+    <color name="ch2">#E5484D</color>
+    <color name="ch3">#E8930C</color>
+    <color name="ch4">#7B5CE0</color>
+
     <color name="white">#FFFFFFFF</color>
-    <color name="chart1">#FFE53935</color>
-    <color name="chart2">#FF1E88E5</color>
-    <color name="chart3">#FF43A047</color>
-    <color name="chart4">#FFFB8C00</color>
+    <color name="black">#FF000000</color>
+    <color name="gradDangerA">#FF7B85</color>
 </resources>

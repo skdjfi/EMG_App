@@ -1,26 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">EMG 肌电监测</string>
-    <!-- 连接区 -->
-    <string name="host_hint">ESP32 IP (AP 模式默认 192.168.4.1)</string>
-    <string name="port_hint">端口(默认 5000)</string>
+    <string name="app_name">EMG Monitor</string>
+
+    <string name="brand_sub">KNEE REHAB · ADS1194</string>
+    <string name="brand_sub_predict">INTENT + ANGLE · CNN-GRU</string>
+
+    <!-- 主页 -->
+    <string name="chan_section">信号通道 · CHANNELS</string>
+    <string name="imu_name">姿态传感器</string>
+    <string name="imu_chip">BMI088</string>
     <string name="connect">连接</string>
-    <string name="disconnect">断开</string>
-    <!-- 命令 -->
-    <string name="cmd_start">启动采集</string>
-    <string name="cmd_stop">停止采集</string>
-    <string name="cmd_imu_on">开启IMU</string>
-    <string name="cmd_imu_off">关闭IMU</string>
-    <string name="cmd_get_info">设备信息</string>
-    <string name="gain_label">增益: x6</string>
-    <string name="sps_label">采样率: 500SPS</string>
-    <string name="status_disconnected">未连接</string>
-    <string name="status_connecting">连接中…</string>
-    <string name="status_connected">已连接</string>
-    <!-- 波形 -->
-    <string name="ch1_label">CH1</string>
-    <string name="ch2_label">CH2</string>
-    <string name="ch3_label">CH3</string>
-    <string name="ch4_label">CH4</string>
-    <string name="info_text">设备信息: -</string>
+    <string name="connect_ok">已连接</string>
+    <string name="connect_off">未连接</string>
+    <string name="status_ap">AP 在线</string>
+    <string name="status_offline">离线</string>
+    <string name="led_connecting">连接中…</string>
+    <string name="gain_badge">增益 ×%1$d</string>
+    <string name="sps_badge">%1$d SPS</string>
+    <string name="imu_badge">IMU 开</string>
+    <string name="ch_name_0">股直肌</string>
+    <string name="ch_name_1">股内侧肌</string>
+    <string name="ch_name_2">腓肠肌</string>
+    <string name="ch_name_3">胫骨前肌</string>
+    <string name="uv_unit">µV</string>
+
+    <!-- 波形详情 -->
+    <string name="wave_detail_title">CH %1$d · %2$s</string>
+    <string name="wave_tag">500 SPS · 增益 ×%1$d · 1.0 s 窗口</string>
+    <string name="rms">RMS</string>
+    <string name="peak">PEAK %1$d</string>
+    <string name="mdf">中位频率</string>
+    <string name="quality">信号质量</string>
+
+    <!-- IMU 详情 -->
+    <string name="imu_detail_title">姿态传感器</string>
+    <string name="acc_x">ACC X</string>
+    <string name="acc_y">ACC Y</string>
+    <string name="acc_z">ACC Z</string>
+    <string name="gyr_x">GYR X</string>
+    <string name="gyr_y">GYR Y</string>
+    <string name="gyr_z">GYR Z</string>
+    <string name="imu_spec">BMI088 · 加速度 ±6 g · 陀螺 2000 °/s</string>
+
+    <!-- 预测页 -->
+    <string name="model_name">best.pt</string>
+    <string name="model_chip">CNN-GRU</string>
+    <string name="model_desc">3 s 窗口 @ 200 Hz · %1$d 通道 · 窗口缓冲 %2$.0f%%</string>
+    <string name="conf">置信 %1$d%%</string>
+    <string name="knee_head">右膝角度 · 实时</string>
+    <string name="phase_flex">屈曲中</string>
+    <string name="phase_ext">伸展中</string>
+    <string name="flex_lbl">屈曲</string>
+    <string name="axis_flex">屈曲 · FLEX</string>
+    <string name="axis_abduc">外展 · ABDUC</string>
+    <string name="axis_rot">旋转 · ROT</string>
+    <string name="intent_head">意图识别 · 1 秒后</string>
+    <string name="intent_count">10 类</string>
+
+    <!-- 底部 -->
+    <string name="tab_wave">波形</string>
+    <string name="tab_predict">预测</string>
+
+    <!-- 消息 -->
+    <string name="not_connected">未连接设备</string>
+    <string name="toast_gain">增益: ×%1$d</string>
+    <string name="toast_sps">采样率: %1$d SPS</string>
+    <string name="toast_start">开始采集</string>
+    <string name="toast_stop">停止采集</string>
 </resources>

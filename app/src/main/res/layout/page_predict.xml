@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/bg"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="96dp">
+
+        <!-- 顶栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_logo"
+                android:src="@drawable/ic_logo"
+                android:contentDescription="logo"
+                android:padding="9dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="11dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Knee Prediction"
+                    android:textColor="?attr/textPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand_sub_predict"
+                    android:textColor="?attr/textSecondary"
+                    android:textSize="9.5sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.16"
+                    android:layout_marginTop="1dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnThemeP"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_round"
+                android:src="@drawable/ic_moon"
+                android:contentDescription="切换主题"
+                android:padding="9dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <ImageView
+                android:id="@+id/btnInfoP"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/bg_round"
+                android:src="@drawable/ic_info"
+                android:contentDescription="模型详情"
+                android:padding="9dp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- 模型状态卡 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_round"
+                android:src="@drawable/ic_model"
+                android:contentDescription="模型"
+                android:padding="11dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="13dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/model_name"
+                        android:textColor="?attr/textPrimary"
+                        android:textSize="13.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="@string/model_chip"
+                        android:textColor="?attr/accent"
+                        android:textSize="8.5sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/modelDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="3 s 窗口 @ 200 Hz · 85 通道 · 窗口缓冲 0%"
+                    android:textColor="?attr/textSecondary"
+                    android:textSize="10.5sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_track">
+
+                    <View
+                        android:id="@+id/winFill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_bar_gradient" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/confTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置信 0%"
+                android:textColor="?attr/textSecondary"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_chip"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+        </LinearLayout>
+
+        <!-- 膝关节模型卡 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_knee"
+            android:paddingBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/knee_head"
+                    android:textColor="?attr/textPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/phaseTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phase_flex"
+                    android:textColor="?attr/accent"
+                    android:textSize="9.5sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
+            </LinearLayout>
+
+            <com.knee.emgapp.view.KneeView
+                android:id="@+id/knee"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flex_lbl"
+                    android:textColor="?attr/textTertiary"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.2"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginBottom="7dp" />
+
+                <TextView
+                    android:id="@+id/flexBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="62°"
+                    android:textColor="?attr/textPrimary"
+                    android:textSize="42sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginRight="4.5dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="9dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/axis_flex"
+                        android:textColor="?attr/textTertiary"
+                        android:textSize="8.5sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.13" />
+
+                    <TextView
+                        android:id="@+id/aX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="62°"
+                        android:textColor="?attr/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_track">
+
+                        <View
+                            android:id="@+id/mX"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_bar_gradient" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="4.5dp"
+                    android:layout_marginRight="4.5dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="9dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/axis_abduc"
+                        android:textColor="?attr/textTertiary"
+                        android:textSize="8.5sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.13" />
+
+                    <TextView
+                        android:id="@+id/aY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="4.2°"
+                        android:textColor="?attr/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_track">
+
+                        <View
+                            android:id="@+id/mY"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_bar_red" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="4.5dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="9dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/axis_rot"
+                        android:textColor="?attr/textTertiary"
+                        android:textSize="8.5sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.13" />
+
+                    <TextView
+                        android:id="@+id/aZ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="−2.8°"
+                        android:textColor="?attr/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_track">
+
+                        <View
+                            android:id="@+id/mZ"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_bar_yellow" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 意图识别 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginTop="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intent_head"
+                    android:textColor="?attr/textPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/intent_count"
+                    android:textColor="?attr/textSecondary"
+                    android:textSize="9.5sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="9dp"
+                    android:paddingRight="9dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/intentRows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="13dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 可换肤颜色属性 -->
+    <attr name="bg" format="color" />
+    <attr name="card" format="color" />
+    <attr name="card2" format="color" />
+    <attr name="cardEdge" format="color" />
+    <attr name="textPrimary" format="color" />
+    <attr name="textSecondary" format="color" />
+    <attr name="textTertiary" format="color" />
+    <attr name="accent" format="color" />
+    <attr name="accent2" format="color" />
+    <attr name="accentDim" format="color" />
+    <attr name="danger" format="color" />
+    <attr name="warn" format="color" />
+    <attr name="track" format="color" />
+    <attr name="chip" format="color" />
+    <attr name="chipEdge" format="color" />
+    <attr name="glass" format="color" />
+    <attr name="glassEdge" format="color" />
+    <attr name="ch1" format="color" />
+    <attr name="ch2" format="color" />
+    <attr name="ch3" format="color" />
+    <attr name="ch4" format="color" />
+</resources>

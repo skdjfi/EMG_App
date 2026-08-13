@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ===== 深色科技风 ===== -->
+    <color name="bg">#0A0E14</color>
+    <color name="card">#121923</color>
+    <color name="card2">#0E1520</color>
+    <color name="cardEdge">#1F2A3A</color>
+    <color name="textPrimary">#EEF2F7</color>
+    <color name="textSecondary">#7C8AA0</color>
+    <color name="textTertiary">#4E5B6E</color>
+    <color name="accent">#2FE6A3</color>
+    <color name="accent2">#00C9A7</color>
+    <color name="accentDim">#1F2FE6A3</color>
+    <color name="danger">#F2555F</color>
+    <color name="warn">#FFB020</color>
+    <color name="track">#1B2533</color>
+    <color name="chip">#0C121B</color>
+    <color name="chipEdge">#233044</color>
+    <color name="glass">#E0101621</color>
+    <color name="glassEdge">#261C2A3A</color>
+
+    <color name="ch1">#2FE6A3</color>
+    <color name="ch2">#FF7D8C</color>
+    <color name="ch3">#F5B14C</color>
+    <color name="ch4">#8FA8FF</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="gradDangerA">#FF7B85</color>
+</resources>

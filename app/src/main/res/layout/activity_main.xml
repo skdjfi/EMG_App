@@ -1,211 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?attr/bg">
 
+    <!-- ===== 主页(波形) ===== -->
+    <include
+        layout="@layout/page_wave"
+        android:id="@+id/pageWave" />
+
+    <!-- ===== 预测页 ===== -->
+    <include
+        layout="@layout/page_predict"
+        android:id="@+id/pagePredict"
+        android:visibility="gone" />
+
+    <!-- ===== 底部玻璃 Tab 栏 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:padding="12dp">
-
-        <!-- ===== 连接区 ===== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editHost"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="@string/host_hint"
-                android:inputType="text"
-                android:maxLines="1"
-                android:text="192.168.4.1" />
-
-            <EditText
-                android:id="@+id/editPort"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/port_hint"
-                android:inputType="number"
-                android:maxLines="1"
-                android:text="5000" />
-
-            <Button
-                android:id="@+id/btnConnect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/connect" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/status_disconnected"
-            android:textColor="@color/chart2"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/txtInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/info_text"
-            android:textSize="12sp" />
-
-        <!-- ===== 肌电波形 ===== -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="4 通道肌电 (EMG)"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chartCh1"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chartCh2"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chartCh3"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chartCh4"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
-
-        <!-- ===== IMU 数据 ===== -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="IMU 姿态数据"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtImu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ACC: -  GYR: -"
-            android:textSize="12sp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chartImu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-
-        <!-- ===== 命令区 ===== -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="控制命令"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_glass"
+            android:elevation="10dp"
+            android:gravity="center_vertical">
 
-            <Button
-                android:id="@+id/btnStart"
+            <TextView
+                android:id="@+id/tabWave"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cmd_start" />
+                android:gravity="center"
+                android:text="@string/tab_wave"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:textColor="?attr/accent"
+                android:drawableTop="@drawable/ic_wave"
+                android:drawablePadding="2dp"
+                android:clickable="true"
+                android:focusable="true" />
 
-            <Button
-                android:id="@+id/btnStop"
+            <View
+                android:layout_width="58dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/tabPredict"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cmd_stop" />
+                android:gravity="center"
+                android:text="@string/tab_predict"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:textColor="?attr/textTertiary"
+                android:drawableTop="@drawable/ic_predict"
+                android:drawablePadding="2dp"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnGainMinus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="-增益" />
-
-            <Button
-                android:id="@+id/btnGainPlus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+增益" />
-
-            <Button
-                android:id="@+id/btnSpsMinus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="-采样" />
-
-            <Button
-                android:id="@+id/btnSpsPlus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+采样" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnImuOn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cmd_imu_on" />
-
-            <Button
-                android:id="@+id/btnImuOff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cmd_imu_off" />
-
-            <Button
-                android:id="@+id/btnGetInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cmd_get_info" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtDebug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="11sp" />
-
     </LinearLayout>
-</ScrollView>
+
+    <!-- ===== 中间凸起 FAB(启动/停止) ===== -->
+    <ImageButton
+        android:id="@+id/fab"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/bg_btn_accent"
+        android:elevation="12dp"
+        android:src="@drawable/ic_play"
+        android:contentDescription="启动/停止采集"
+        android:scaleType="centerInside"
+        android:padding="16dp" />
+
+    <!-- ===== 波形详情(全屏覆盖) ===== -->
+    <include
+        layout="@layout/page_wave_detail"
+        android:id="@+id/pageWaveDetail"
+        android:visibility="gone" />
+
+    <!-- ===== IMU 详情(全屏覆盖) ===== -->
+    <include
+        layout="@layout/page_imu_detail"
+        android:id="@+id/pageImuDetail"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- 浅色医疗风主题 -->
-    <style name="Theme.EMGApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- 深色科技风主题 -->
+    <style name="Theme.EMGApp" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/accent</item>
         <item name="colorPrimaryVariant">@color/accent2</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -9,8 +9,8 @@
         <item name="android:windowBackground">@color/bg</item>
         <item name="android:statusBarColor">@color/bg</item>
         <item name="android:navigationBarColor">@color/bg</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
 
         <item name="bg">@color/bg</item>
         <item name="card">@color/card</item>
