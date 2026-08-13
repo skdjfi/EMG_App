@@ -92,11 +92,17 @@
             android:layout_marginBottom="18dp">
 
             <View
+                android:layout_width="3dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_status_edge" />
+
+            <com.knee.emgapp.view.PulseLedView
                 android:id="@+id/ledStatus"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/bg_circle_danger" />
+                android:layout_marginTop="3dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -286,17 +292,31 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/chCard0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="6.5dp"
-                android:orientation="vertical"
                 android:background="@drawable/bg_card"
-                android:padding="15dp"
                 android:clickable="true"
                 android:focusable="true">
+
+                <View
+                    android:id="@+id/chHalo0"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-34dp"
+                    android:layout_marginRight="-34dp"
+                    android:background="@drawable/bg_halo"
+                    android:alpha="0.28" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -314,11 +334,23 @@
                         android:textStyle="bold"
                         android:letterSpacing="0.22" />
 
-                    <View
-                        android:id="@+id/chDot0"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"
-                        android:background="?attr/ch1" />
+                    <FrameLayout
+                        android:layout_width="18dp"
+                        android:layout_height="18dp">
+
+                        <View
+                            android:id="@+id/chDotGlow0"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/bg_halo" />
+
+                        <View
+                            android:id="@+id/chDot0"
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/ch1" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <com.knee.emgapp.view.MiniWaveView
@@ -385,19 +417,34 @@
                         android:textColor="?attr/textSecondary"
                         android:textSize="14sp" />
                 </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/chCard1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="6.5dp"
-                android:orientation="vertical"
                 android:background="@drawable/bg_card"
-                android:padding="15dp"
                 android:clickable="true"
                 android:focusable="true">
+
+                <View
+                    android:id="@+id/chHalo1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-34dp"
+                    android:layout_marginRight="-34dp"
+                    android:background="@drawable/bg_halo"
+                    android:alpha="0.28" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -415,11 +462,23 @@
                         android:textStyle="bold"
                         android:letterSpacing="0.22" />
 
-                    <View
-                        android:id="@+id/chDot1"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"
-                        android:background="?attr/ch2" />
+                    <FrameLayout
+                        android:layout_width="18dp"
+                        android:layout_height="18dp">
+
+                        <View
+                            android:id="@+id/chDotGlow1"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/bg_halo" />
+
+                        <View
+                            android:id="@+id/chDot1"
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/ch2" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <com.knee.emgapp.view.MiniWaveView
@@ -486,7 +545,8 @@
                         android:textColor="?attr/textSecondary"
                         android:textSize="14sp" />
                 </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -495,17 +555,31 @@
             android:orientation="horizontal"
             android:layout_marginTop="13dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/chCard2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="6.5dp"
-                android:orientation="vertical"
                 android:background="@drawable/bg_card"
-                android:padding="15dp"
                 android:clickable="true"
                 android:focusable="true">
+
+                <View
+                    android:id="@+id/chHalo2"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-34dp"
+                    android:layout_marginRight="-34dp"
+                    android:background="@drawable/bg_halo"
+                    android:alpha="0.28" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -523,11 +597,23 @@
                         android:textStyle="bold"
                         android:letterSpacing="0.22" />
 
-                    <View
-                        android:id="@+id/chDot2"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"
-                        android:background="?attr/ch3" />
+                    <FrameLayout
+                        android:layout_width="18dp"
+                        android:layout_height="18dp">
+
+                        <View
+                            android:id="@+id/chDotGlow2"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/bg_halo" />
+
+                        <View
+                            android:id="@+id/chDot2"
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/ch3" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <com.knee.emgapp.view.MiniWaveView
@@ -594,19 +680,34 @@
                         android:textColor="?attr/textSecondary"
                         android:textSize="14sp" />
                 </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/chCard3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="6.5dp"
-                android:orientation="vertical"
                 android:background="@drawable/bg_card"
-                android:padding="15dp"
                 android:clickable="true"
                 android:focusable="true">
+
+                <View
+                    android:id="@+id/chHalo3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-34dp"
+                    android:layout_marginRight="-34dp"
+                    android:background="@drawable/bg_halo"
+                    android:alpha="0.28" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -624,11 +725,23 @@
                         android:textStyle="bold"
                         android:letterSpacing="0.22" />
 
-                    <View
-                        android:id="@+id/chDot3"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"
-                        android:background="?attr/ch4" />
+                    <FrameLayout
+                        android:layout_width="18dp"
+                        android:layout_height="18dp">
+
+                        <View
+                            android:id="@+id/chDotGlow3"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/bg_halo" />
+
+                        <View
+                            android:id="@+id/chDot3"
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/ch4" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <com.knee.emgapp.view.MiniWaveView
@@ -695,7 +808,8 @@
                         android:textColor="?attr/textSecondary"
                         android:textSize="14sp" />
                 </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
         <!-- ===== IMU 卡(可点击) ===== -->

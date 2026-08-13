@@ -44,12 +44,11 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <View
+            <com.knee.emgapp.view.PulseLedView
                 android:id="@+id/dtLive"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginLeft="9dp"
-                android:background="@drawable/bg_circle_danger" />
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="9dp" />
         </LinearLayout>
 
         <ImageView
@@ -84,6 +83,13 @@
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:background="@drawable/bg_card">
+
+        <View
+            android:layout_width="240dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@drawable/bg_glow_line"
+            android:alpha="0.55" />
 
         <com.knee.emgapp.view.WaveformView
             android:id="@+id/waveView"

@@ -6,6 +6,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.view.Gravity
 import android.view.View
 import android.widget.EditText
@@ -22,6 +25,7 @@ import com.knee.emgapp.theme.Theme
 import com.knee.emgapp.view.HorizonView
 import com.knee.emgapp.view.KneeView
 import com.knee.emgapp.view.MiniWaveView
+import com.knee.emgapp.view.PulseLedView
 import com.knee.emgapp.view.WaveformView
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -47,10 +51,13 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
     /* 底部栏 */
     private lateinit var tabWave: TextView
     private lateinit var tabPredict: TextView
+    private lateinit var tabGlow0: View
+    private lateinit var tabGlow1: View
+    private lateinit var fabRing: View
     private lateinit var fab: ImageButton
 
     /* 主页 */
-    private lateinit var ledStatus: View
+    private lateinit var ledStatus: PulseLedView
     private lateinit var stMode: TextView
     private lateinit var stHost: TextView
     private lateinit var bGain: TextView
@@ -67,7 +74,7 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
 
     /* 波形详情 */
     private lateinit var dtName: TextView
-    private lateinit var dtLive: View
+    private lateinit var dtLive: PulseLedView
     private lateinit var waveView: WaveformView
     private lateinit var stRms: TextView
     private lateinit var dtPeak: TextView
@@ -82,6 +89,7 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
 
     /* IMU 详情 */
     private lateinit var horizon: HorizonView
+    private lateinit var dtImuLive: PulseLedView
     private lateinit var ivR: TextView
     private lateinit var ivP: TextView
     private lateinit var ivY: TextView
@@ -186,6 +194,9 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
 
         tabWave = findViewById(R.id.tabWave)
         tabPredict = findViewById(R.id.tabPredict)
+        tabGlow0 = findViewById(R.id.tabGlow0)
+        tabGlow1 = findViewById(R.id.tabGlow1)
+        fabRing = findViewById(R.id.fabRing)
         fab = findViewById(R.id.fab)
 
         ledStatus = findViewById(R.id.ledStatus)
@@ -226,6 +237,7 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         waveTag = findViewById(R.id.waveTag)
 
         horizon = findViewById(R.id.horizon)
+        dtImuLive = findViewById(R.id.dtImuLive)
         ivR = findViewById(R.id.ivR)
         ivP = findViewById(R.id.ivP)
         ivY = findViewById(R.id.ivY)
@@ -263,6 +275,14 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
             Theme.color(this, R.attr.ch4)
         )
         repeat(4) { minis[it].setColor(chColors[it]) }
+
+        // 通道卡右上光晕 + 色点辉光(按通道色染色)
+        val glowIds = intArrayOf(R.id.chDotGlow0, R.id.chDotGlow1, R.id.chDotGlow2, R.id.chDotGlow3)
+        val haloIds = intArrayOf(R.id.chHalo0, R.id.chHalo1, R.id.chHalo2, R.id.chHalo3)
+        repeat(4) {
+            findViewById<View>(glowIds[it]).backgroundTintList = Theme.tint(chColors[it])
+            findViewById<View>(haloIds[it]).backgroundTintList = Theme.tint(chColors[it])
+        }
     }
 
     /* ==================== 监听 ==================== */
@@ -317,6 +337,8 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
         tabPredict.setTextColor(if (idx == 1) accent else tertiary)
         tabWave.setCompoundDrawableTintList(Theme.tint(if (idx == 0) accent else tertiary))
         tabPredict.setCompoundDrawableTintList(Theme.tint(if (idx == 1) accent else tertiary))
+        tabGlow0.alpha = if (idx == 0) 0.45f else 0f
+        tabGlow1.alpha = if (idx == 1) 0.45f else 0f
     }
 
     private fun openWaveDetail(idx: Int) {
@@ -334,7 +356,7 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
     /** 详情页全屏覆盖时隐藏 FAB 与底部 Tab 栏(它们有 elevation, 会浮在覆盖层之上) */
     private fun setOverlayChrome(show: Boolean) {
         val v = if (show) View.VISIBLE else View.GONE
-        fab.visibility = v
+        fabRing.visibility = v
         findViewById<View>(R.id.tabBarWrap).visibility = v
     }
 
@@ -423,8 +445,16 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
     private fun reflectState() {
         val connected = AppState.connected
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
-        ledStatus.backgroundTintList = if (connected) Theme.tint(Theme.color(this, R.attr.accent)) else null
-        dtLive.backgroundTintList = if (connected) Theme.tint(Theme.color(this, R.attr.accent)) else null
+        ledStatus.setActive(connected)
+        dtLive.setActive(connected)
+        dtImuLive.setActive(connected)
+        if (connected) {
+            btnConn.text = getString(R.string.disconnect)
+            btnConn.setBackgroundResource(R.drawable.bg_btn_red)
+        } else {
+            btnConn.text = getString(R.string.connect)
+            btnConn.setBackgroundResource(R.drawable.bg_btn_accent)
+        }
         stMode.text = getString(if (connected) R.string.status_ap else R.string.status_offline)
         stMode.setTextColor(Theme.color(this, if (connected) R.attr.accent else R.attr.textTertiary))
         val host = prefs.getString(KEY_HOST, "192.168.4.1") ?: "192.168.4.1"
@@ -556,7 +586,15 @@ class MainActivity : AppCompatActivity(), AppState.UiBridge {
 
         val rms = calcRms(list)
         val peak = list.maxOfOrNull { abs(it) } ?: 0f
-        stRms.text = "${rms.toInt()}"
+        val rmsTxt = rms.toInt().toString()
+        val ss = SpannableString("$rmsTxt µV")
+        val off = rmsTxt.length
+        ss.setSpan(RelativeSizeSpan(0.33f), off, ss.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(
+            ForegroundColorSpan(Theme.color(this, R.attr.textSecondary)),
+            off, ss.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        stRms.text = ss
         dtPeak.text = getString(R.string.peak, peak.toInt())
 
         // 中位频率: 过零率估算

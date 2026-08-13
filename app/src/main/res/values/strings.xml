@@ -10,6 +10,7 @@
     <string name="imu_name">姿态传感器</string>
     <string name="imu_chip">BMI088</string>
     <string name="connect">连接</string>
+    <string name="disconnect">断开</string>
     <string name="connect_ok">已连接</string>
     <string name="connect_off">未连接</string>
     <string name="status_ap">AP 在线</string>
